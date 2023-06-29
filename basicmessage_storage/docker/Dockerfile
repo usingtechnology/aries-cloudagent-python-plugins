@@ -25,5 +25,7 @@ COPY --from=base /usr/src/app/.venv /usr/src/app/.venv
 ENV PATH="/usr/src/app/.venv/bin:$PATH"
 
 COPY basicmessage_storage/ basicmessage_storage/
+COPY docker/default.yml ./
 
 ENTRYPOINT ["/bin/bash", "-c", "aca-py \"$@\"", "--"]
+CMD ["start", "--arg-file", "default.yml"]
